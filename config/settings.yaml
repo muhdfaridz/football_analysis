@@ -1,0 +1,47 @@
+# Football Analytics — Configuration
+# All secrets loaded from .env — never put keys here directly
+
+# ── API Keys (loaded from environment, listed here for reference) ────────────
+# FOOTBALL_DATA_ORG_KEY   → .env
+# API_FOOTBALL_KEY        → .env (RapidAPI)
+
+# ── API Base URLs ────────────────────────────────────────────────────────────
+football_data_base_url: "https://api.football-data.org/v4"
+api_football_base_url: "https://api-football-v1.p.rapidapi.com/v3"
+fpl_base_url: "https://fantasy.premierleague.com/api"
+
+# ── Rate Limits ──────────────────────────────────────────────────────────────
+football_data_requests_per_min: 10
+api_football_requests_per_day: 100   # free tier cap — use carefully
+
+# ── Competitions Active (Phase 1 only) ──────────────────────────────────────
+active_competitions:
+  - id: 2021
+    name: "Premier League"
+    country: "England"
+  - id: 2001
+    name: "UEFA Champions League"
+    country: "Europe"
+
+# ── Refresh Schedule (Asia/Singapore, UTC+8) ────────────────────────────────
+timezone: "Asia/Singapore"
+refresh_standings_time: "06:00"     # daily
+refresh_fixtures_time: "06:00"      # daily (every 6h via interval below)
+refresh_scorers_time: "06:00"       # daily
+refresh_fpl_time: "08:00"           # daily
+fixtures_refresh_interval_hours: 6
+live_score_interval_seconds: 60     # match days only — API-Football Pro needed
+
+# ── Cache ────────────────────────────────────────────────────────────────────
+cache_ttl_hours: 6
+db_path: "data/football.db"
+
+# ── Display ──────────────────────────────────────────────────────────────────
+default_competition_id: 2021        # Premier League
+results_per_page: 20
+form_matches: 5                     # last N matches for form guide
+recent_matches: 10                  # last N matches on team profile
+
+# ── Development ──────────────────────────────────────────────────────────────
+use_mock_data: false                # set true to dev without burning API calls
+log_level: "INFO"                   # DEBUG | INFO | WARNING | ERROR

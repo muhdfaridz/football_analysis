@@ -1,0 +1,36 @@
+# Secrets
+.env
+
+# Database (don't commit live data)
+data/football.db
+data/*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Streamlit
+.streamlit/secrets.toml

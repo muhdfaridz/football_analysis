@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m backend.smoke_test)",
+      "Bash(python -c \"import streamlit; print\\(streamlit.__version__\\)\")",
+      "Bash(Test-Path \"c:\\\\Users\\\\Lenovo Thinkpad\\\\Documents\\\\Claude\\\\football_analytics\\\\football-analytics\\\\backend\\\\fpl_api.py\")",
+      "Bash(python -m backend.smoke_test fpl)",
+      "Read(//c/Users/Lenovo Thinkpad/.claude/projects/c--Users-Lenovo-Thinkpad-Documents-Claude-football-analytics-football-analytics/memory/**)",
+      "Bash(Test-Path \"c:\\\\Users\\\\Lenovo Thinkpad\\\\Documents\\\\Claude\\\\football_analytics\\\\football-analytics\\\\backend\\\\data_processor.py\")",
+      "Bash(python -m backend.smoke_test processor)",
+      "Bash(python -m backend.smoke_test scheduler)",
+      "Bash(ls \"c:\\\\Users\\\\Lenovo Thinkpad\\\\Documents\\\\Claude\\\\football_analytics\\\\football-analytics\\\\\")",
+      "Read(//c/Users/Lenovo Thinkpad/Documents/Claude/football_analytics/**)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\Lenovo Thinkpad\\.claude\\projects\\c--Users-Lenovo-Thinkpad-Documents-Claude-football-analytics-football-analytics\\memory"
+    ]
+  }
+}

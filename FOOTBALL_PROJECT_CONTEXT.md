@@ -284,21 +284,21 @@ results_per_page: 20
 ## 10. Build Phases
 
 ### Phase 1 — Web Dashboard MVP (current)
-- [ ] Repo scaffolding + settings.yaml + .env.example
-- [ ] database.py — SQLite schema for matches, teams, players, standings
-- [ ] football_data_api.py — standings, fixtures, results, top scorers
-- [ ] fpl_api.py — FPL player data, prices, form, fixture difficulty
-- [ ] data_processor.py — clean and transform raw API responses
-- [ ] scheduler.py — daily refresh jobs
-- [ ] cache_manager.py — TTL-based cache invalidation
-- [ ] frontend/app.py — Streamlit shell, navigation
-- [ ] pages/home.py — today's fixtures, recent results, standings snapshot
-- [ ] pages/standings.py — full league table with form guide
-- [ ] pages/fixtures.py — fixtures and results calendar
-- [ ] pages/teams.py — team profile page
-- [ ] pages/players.py — player profile + comparison tool
-- [ ] pages/fantasy.py — FPL dashboard
-- [ ] pages/head_to_head.py — H2H comparison
+- [x] Repo scaffolding + settings.yaml + .env.example
+- [x] database.py — SQLite schema for matches, teams, players, standings
+- [x] football_data_api.py — standings, fixtures, results, top scorers
+- [x] fpl_api.py — FPL player data, prices, form, fixture difficulty
+- [x] data_processor.py — clean and transform raw API responses
+- [x] scheduler.py — daily refresh jobs
+- [x] cache_manager.py — TTL-based cache invalidation
+- [x] frontend/app.py — Streamlit shell, navigation
+- [x] pages/home.py — today's fixtures, recent results, standings snapshot
+- [x] pages/standings.py — full league table with form guide
+- [x] pages/fixtures.py — fixtures and results calendar
+- [x] pages/teams.py — team profile page
+- [x] pages/players.py — player profile + comparison tool
+- [x] pages/fantasy.py — FPL dashboard
+- [x] pages/head_to_head.py — H2H comparison
 
 ### Phase 2 — Deeper Analytics
 - [ ] api_football.py — player ratings, lineups, predictions
@@ -378,5 +378,40 @@ API-Football free tier: 100 req/day — must be used carefully.
 
 ---
 
-*Update this file after every meaningful session.*
-*It is the shared source of truth across Claude Code, VS Code, and Claude.ai Project.*
+
+
+## 15. Build Log
+
+### Session 1 — May 2026
+- Scaffolded full repo structure
+- Built database.py — 9 tables, all upsert + query functions confirmed working
+- Built football_data_api.py — standings, fixtures, results, scorers, team endpoints
+- Built fpl_api.py — bootstrap, fixtures, player history, GW detection
+  - Smoke test: 840 players, 38 GWs, 20 teams loaded clean
+  - Current GW: 37
+  - Top 5 by points: Haaland (239), B.Fernandes (221), Gabriel (208), Semenyo (196), Rice (184)
+- data_processor.py — in progress
+- Built data_processor.py — all 7 transform functions confirmed working
+  - Known: form_list returns [] when standings.form is NULL in DB (API returned null on first fetch)
+  - Will self-correct on next standings refresh once season form data is populated
+  - Built cache_manager.py — TTL constants, key builders, needs_refresh() wrapper (50 lines)
+- Built scheduler.py — 4 jobs, CronTrigger (standings/scorers 06:00, FPL 08:00 SG),
+  IntervalTrigger (fixtures every 6h), per-job exception handling confirmed
+- Phase 1 backend COMPLETE ✅
+- Built frontend/app.py — shell, scheduler guard, sidebar nav, cache status footer
+- All 7 page stubs refactored to def show() contract
+- Frontend shell COMPLETE ✅
+- Built pages/home.py — upcoming fixtures, recent results, standings snapshot
+  - Config-driven competition list, score badges, form emoji circles ✅
+  - Built pages/standings.py — full table with zone highlighting, dynamic max_pos,
+  form emoji, leader + top scorer metrics ✅
+  - Built pages/fixtures.py — upcoming/results tabs, date grouping, team filter,
+  _collect_teams union pattern, _fixture_row 3-1-3 layout ✅
+  - Built pages/teams.py — season metrics, adaptive form badge row, results table
+  with H/A derivation, upcoming fixtures, _get_team_id direct DB read ✅
+  - Built pages/players.py — top scorers with medal styling, player search with
+  4 filters, comparison tool with deltas, status emoji mapping ✅
+  - Built pages/head_to_head.py — team list from DB, Compare button with session_state
+  persistence, _fetch_h2h single-query filter, _outcome W/D/L derivation,
+  SG timezone date formatting, limited history warning ✅
+- Phase 1 COMPLETE ✅
